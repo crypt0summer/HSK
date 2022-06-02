@@ -1,2 +1,3 @@
 # HSK
-React Native quiz application for my friend
+Quiz application for my friend
+React Native + Expo + Redux
