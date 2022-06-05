@@ -21,10 +21,14 @@ module.exports = StyleSheet.create({
       // borderRadius: "50px",
       fontSize: 30,
       padding: 20,
-      margin: 10,
+      margin: 20,
       borderWidth: StyleSheet.hairlineWidth,
       borderColor: '#f0f0f0',
       backgroundColor: '#f9f9f9'
+    },
+    radiobtn:{
+      marginLeft: 20,
+      marginRight: 20
     },
     separator: {
       marginVertical: 8,

@@ -3,11 +3,16 @@ import { View, Text, SafeAreaView, Button } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Quiz_1_Screen from "../Quiz_1/App";
 import Quiz_2_Screen from "../Quiz_2/App";
+import { useHSKStore } from "../Store/index";
 const styles = require("./stylesheet");
 
 const Separator = () => <View style={styles.separator} />;
 
 function QuizNaviScreen({ navigation }) {
+  // const resetQuizCount = useHSKStore((state) => state.resetQuizCount);
+  // useEffect(() => {
+  //   resetQuizCount();
+  // });
   return (
     <SafeAreaView style={styles.container}>
       <View>

@@ -16,6 +16,7 @@ import create from "zustand";
 
 const useQ1Store = create((set) => ({
   quizCount: 0,
+  quizTotal: 2,
   quizzes: [
     {
       hsk: "0101",
@@ -48,23 +49,28 @@ const useQ1Store = create((set) => ({
     })),
   addQuiz: (quiz) =>
     set((state) => ({
-        quizzes: [
+      quizzes: [
         {
-            hsk: quiz.hsk,
-            hsk_name: quiz.hsk_name,
-            answer: quiz.answer,
-            chosen: quiz.chosen,
+          hsk: quiz.hsk,
+          hsk_name: quiz.hsk_name,
+          answer: quiz.answer,
+          chosen: quiz.chosen,
         },
         ...state.quizzes,
       ],
+    })),
+  resetQuizCount: () =>
+    set((state) => ({
+      quizCount: state.quizCount = 0, //TODO 아직안써봄
     })),
   removeQuiz: (hsk) =>
     set((state) => ({
       currentStudent: state.quizzes.filter((quiz) => quiz.hsk !== hsk),
     })),
+
   updateQuiz: (quiz) =>
     set((state) => ({
-        quizzes: state.quizzes.map((item) => {
+      quizzes: state.quizzes.map((item) => {
         if (item.hsk === quiz.hsk) {
           return {
             ...item,
@@ -77,20 +83,20 @@ const useQ1Store = create((set) => ({
         }
       }),
     })),
- updateChosen: (chosen, chosen_hsk) =>
+  updateChosen: (chosen, chosen_hsk) =>
     set((state) => ({
-        quizzes: state.quizzes.map((item) => {
-            if (item.hsk === chosen_hsk) {
-              return {
-                ...item,
-                hsk_name: quiz.hsk_name,
-                answer: quiz.answer,
-                chosen: quiz.chosen = chosen,
-              };
-            } else {
-              return item;
-            }
-          }),
+      quizzes: state.quizzes.map((item) => {
+        if (item.hsk === chosen_hsk) {
+          return {
+            ...item,
+            hsk_name: quiz.hsk_name,
+            answer: quiz.answer,
+            chosen: (quiz.chosen = chosen),
+          };
+        } else {
+          return item;
+        }
+      }),
     })),
 }));
 
