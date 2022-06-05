@@ -16,7 +16,7 @@ import create from "zustand";
 
 const useQ1Store = create((set) => ({
   quizCount: 1,
-  students: [
+  quizzes: [
     {
       hsk: "0101",
       hsk_name: [
@@ -42,37 +42,37 @@ const useQ1Store = create((set) => ({
       chosen: -1,
     },
   ],
-  addQuiz: (quizCount) =>
+  addQuizCount: (quizCount) =>
     set((state) => ({
       quizCount: quizCount + 1,
     })),
-  addStudent: (student) =>
+  addQuiz: (quiz) =>
     set((state) => ({
-      students: [
+        quizzes: [
         {
-          name: student.name,
+          name: quiz.name,
           id: Math.random() * 100 + "",
-          section: student.section,
+          section: quiz.section,
         },
-        ...state.students,
+        ...state.quizzes,
       ],
     })),
-  removeQuiz: (quizCount) =>
+  removeQuizCount: (quizCount) =>
     set((state) => ({
       quizCount: quizCount - 1,
     })),
-  removeStudent: (id) =>
+  removeQuiz: (id) =>
     set((state) => ({
-      currentStudent: state.students.filter((student) => student.id !== id),
+      currentStudent: state.quizzes.filter((quiz) => quiz.id !== id),
     })),
-  updateStudent: (student) =>
+  updateQuiz: (quiz) =>
     set((state) => ({
-      students: state.students.map((item) => {
-        if (item.id === student.id) {
+        quizzes: state.quizzes.map((item) => {
+        if (item.id === quiz.id) {
           return {
             ...item,
-            name: student.name,
-            section: student.section,
+            name: quiz.name,
+            section: quiz.section,
           };
         } else {
           return item;
