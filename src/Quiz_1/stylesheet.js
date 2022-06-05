@@ -5,6 +5,7 @@ module.exports = StyleSheet.create({
       flex: 1,
       backgroundColor: "#fff",
       alignItems: "center",
+      margin: 10,
       // justifyContent: "center",
     },
     scrollView: {

@@ -15,7 +15,7 @@ import create from "zustand";
 // hsk_name: "살아 있는 말 · 당나귀 · 노새 · 버새 "}
 
 const useQ1Store = create((set) => ({
-  quizCount: 1,
+  quizCount: 0,
   quizzes: [
     {
       hsk: "0101",
@@ -42,42 +42,55 @@ const useQ1Store = create((set) => ({
       chosen: -1,
     },
   ],
-  addQuizCount: (quizCount) =>
+  addQuizCount: () =>
     set((state) => ({
-      quizCount: quizCount + 1,
+      quizCount: state.quizCount + 1,
     })),
   addQuiz: (quiz) =>
     set((state) => ({
         quizzes: [
         {
-          name: quiz.name,
-          id: Math.random() * 100 + "",
-          section: quiz.section,
+            hsk: quiz.hsk,
+            hsk_name: quiz.hsk_name,
+            answer: quiz.answer,
+            chosen: quiz.chosen,
         },
         ...state.quizzes,
       ],
     })),
-  removeQuizCount: (quizCount) =>
+  removeQuiz: (hsk) =>
     set((state) => ({
-      quizCount: quizCount - 1,
-    })),
-  removeQuiz: (id) =>
-    set((state) => ({
-      currentStudent: state.quizzes.filter((quiz) => quiz.id !== id),
+      currentStudent: state.quizzes.filter((quiz) => quiz.hsk !== hsk),
     })),
   updateQuiz: (quiz) =>
     set((state) => ({
         quizzes: state.quizzes.map((item) => {
-        if (item.id === quiz.id) {
+        if (item.hsk === quiz.hsk) {
           return {
             ...item,
-            name: quiz.name,
-            section: quiz.section,
+            hsk_name: quiz.hsk_name,
+            answer: quiz.answer,
+            chosen: quiz.chosen,
           };
         } else {
           return item;
         }
       }),
+    })),
+ updateChosen: (chosen, chosen_hsk) =>
+    set((state) => ({
+        quizzes: state.quizzes.map((item) => {
+            if (item.hsk === chosen_hsk) {
+              return {
+                ...item,
+                hsk_name: quiz.hsk_name,
+                answer: quiz.answer,
+                chosen: quiz.chosen = chosen,
+              };
+            } else {
+              return item;
+            }
+          }),
     })),
 }));
 
