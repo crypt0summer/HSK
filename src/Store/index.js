@@ -1,4 +1,4 @@
-import create from 'zustand'
+import create from "zustand";
 
 // const useStore = create(set => ({
 //   testTotal: 10,
@@ -6,44 +6,79 @@ import create from 'zustand'
 //   removeAllTests: () => set({ testTotal: 0 }),
 // }))
 
+// { hsk: "0101", bu: "1",
+// bu_name: "살아 있는 동물과 동물성 생산품",
+// ryu: "1",
+// ryu_name: "살아 있는 동물",
+// jull: "null",
+// jull_name: "null",
+// hsk_name: "살아 있는 말 · 당나귀 · 노새 · 버새 "}
 
-const useStore = create(set => ({
+const useQ1Store = create((set) => ({
+  quizCount: 1,
   students: [
-    { id: '1', name: 'Aaron Saunders', section: 'advanced' },
-    { id: '2', name: 'Andrea Saunders', section: 'beginners' },
-    { id: '3', name: 'Bill Smith', section: 'beginners' },
-    { id: '4', name: 'John Chambers', section: 'beginners' },
-    { id: '5', name: 'Joe Johnson', section: 'advanced' }
+    {
+      hsk: "0101",
+      hsk_name: [
+        "살아 있는 말 · 당나귀 · 노새 · 버새",
+        "살아 있는 소",
+        "살아 있는 돼지",
+        "4번",
+        "5번",
+      ],
+      answer: 0,
+      chosen: -1,
+    },
+    {
+      hsk: "0207",
+      hsk_name: [
+        "제0105호의 가금류의 육과 식용 설육(신선한 것, 냉장하거나 냉동한 것으로 한정한다)",
+        "살아 있는 소",
+        "살아 있는 돼지",
+        "4번",
+        "5번",
+      ],
+      answer: 0,
+      chosen: -1,
+    },
   ],
-  addStudent: student =>
-    set(state => ({
+  addQuiz: (quizCount) =>
+    set((state) => ({
+      quizCount: quizCount + 1,
+    })),
+  addStudent: (student) =>
+    set((state) => ({
       students: [
         {
           name: student.name,
-          id: Math.random() * 100 + '',
-          section: student.section
+          id: Math.random() * 100 + "",
+          section: student.section,
         },
-        ...state.students
-      ]
+        ...state.students,
+      ],
     })),
-  removeStudent: id =>
-    set(state => ({
-      currentStudent: state.students.filter(student => student.id !== id)
+  removeQuiz: (quizCount) =>
+    set((state) => ({
+      quizCount: quizCount - 1,
     })),
-  updateStudent: student =>
-    set(state => ({
-      students: state.students.map(item => {
+  removeStudent: (id) =>
+    set((state) => ({
+      currentStudent: state.students.filter((student) => student.id !== id),
+    })),
+  updateStudent: (student) =>
+    set((state) => ({
+      students: state.students.map((item) => {
         if (item.id === student.id) {
           return {
             ...item,
             name: student.name,
-            section: student.section
+            section: student.section,
           };
         } else {
           return item;
         }
-      })
-    }))
+      }),
+    })),
 }));
 
-export const useStudentStore = useStore;
+export const useHSKStore = useQ1Store;

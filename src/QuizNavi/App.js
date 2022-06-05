@@ -44,7 +44,7 @@ const QuizNavigator = () => {
       <Stack.Screen
         name="Quiz_1"
         component={Quiz_1_Screen}
-        options={{ title: "Quiz_1_Screen" }}
+        options={{ title: "세번으로 호의용어 찾기" }}
       />
       <Stack.Screen
         name="Quiz_2"
