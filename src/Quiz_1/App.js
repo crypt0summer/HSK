@@ -26,7 +26,7 @@ function Quiz_1_Screen() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-      {/* <Text>{json_length}</Text> */}
+      
         {ready_quiz_length === 0 ? (
           <Text>No Questions</Text>
         ) : ready_quiz_length > quizCount ? (

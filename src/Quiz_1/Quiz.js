@@ -26,46 +26,45 @@ function Quiz_Screen() {
 
   return (
     <View>
-        <View>
-          <Separator />
-          <Text style={styles.counter}>{quizCount+1}/10</Text>
-          <Separator />
-          <Separator2 />
-          <Text style={styles.question}>{quizzes[quizCount].hsk}</Text>
-          <Separator2 />
-          <Separator2 />
-
-          
-          {
-          
-          quizzes[quizCount].hsk_name.map((item, idx) => (
-            <RadioButton.Group 
-              key={idx}
-              onValueChange={(newValue) =>
-                updateQuiz({
-                  hsk: quizzes[quizCount].hsk,
-                  hsk_name: quizzes[quizCount].hsk_name,
-                  answer: quizzes[quizCount].answer,
-                  chosen: newValue,
-                })
-              }
-              value={quizzes[quizCount].chosen}
-            >
-              <View style={styles.radiobtn}>
-                <RadioButton value={idx} />
-                <Text >{item}</Text>
-              </View>
-            </RadioButton.Group>
-          ))}
-        </View>
+      <View>
         <Separator />
-        
-        <Button
+        <Text style={styles.counter}>{quizCount + 1}/10</Text>
+        <Separator />
+        <Separator2 />
+        <Text style={styles.question}>{quizzes[quizCount].hsk}</Text>
+        <Separator2 />
+        <Separator2 />
+
+        {quizzes[quizCount].hsk_name.map((item, idx) => (
+          
+          <RadioButton.Group
+            key={idx}
+            onValueChange={(newValue) =>
+              updateQuiz({
+                hsk: quizzes[quizCount].hsk,
+                hsk_name: quizzes[quizCount].hsk_name,
+                answer: quizzes[quizCount].answer,
+                chosen: newValue,
+              })
+            }
+            value={quizzes[quizCount].chosen}
+          >
+            <View style={styles.radiobtn}>
+              <RadioButton value={idx} />
+              <Text>{item}</Text>
+            </View>
+          </RadioButton.Group>
+        ))
+        }
+      </View>
+      <Separator />
+
+      <Button
         // TODO 답 골랐을때만 활성화되게 하기
         title="Next"
         onPress={() => addQuizCount()}
       />
-      </View>
+    </View>
   );
 }
 

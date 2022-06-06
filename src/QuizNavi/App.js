@@ -22,6 +22,8 @@ function QuizNaviScreen({ navigation }) {
   const removeAllQuiz1 = useHSKStore((state) => state.removeAllQuiz);
   const addQuiz1 = useHSKStore((state) => state.addQuiz);
 
+  const quizzes = useHSKStore((state) => state.quizzes);
+
 
   const get_randomArr = (count, min, max) => {
     let arr = new Set();
@@ -48,7 +50,7 @@ function QuizNaviScreen({ navigation }) {
     let answer_idx = Math.floor(Math.random() * (5 - 0) + 0);
     idx_arr.splice(answer_idx, 0, include);
 
-    console.log(idx_arr);
+    // console.log(idx_arr);
     //선택지 array를 한글 문장으로 바꿈
     const option_array = idx_arr.map(idx => json_kor[idx].hsk_name);
 
@@ -82,7 +84,11 @@ function QuizNaviScreen({ navigation }) {
     const quiz_arr = quiz_idx.map(idx => get_quiz_object(idx, total_option_count, 0, json_length));
     // console.log(quiz_arr);
     //뽑은문제 저장
-    addQuiz1(quiz_arr);
+    addQuiz1(quiz_arr[0]);
+    addQuiz1(quiz_arr[1]);
+    // console.log(quizzes[3]);
+    
+
   };
 
   return (
