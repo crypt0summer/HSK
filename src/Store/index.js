@@ -61,11 +61,15 @@ const useQ1Store = create((set) => ({
     })),
   resetQuizCount: () =>
     set((state) => ({
-      quizCount: state.quizCount = 0, //TODO 아직안써봄
+      quizCount: (state.quizCount = 0), //TODO 아직안써봄
     })),
   removeQuiz: (hsk) =>
     set((state) => ({
-      currentStudent: state.quizzes.filter((quiz) => quiz.hsk !== hsk),
+      quizzes: state.quizzes.filter((quiz) => quiz.hsk !== hsk),
+    })),
+  removeAllQuiz: () =>
+    set((state) => ({
+      quizzes: (state.quizzes = []),
     })),
 
   updateQuiz: (quiz) =>
