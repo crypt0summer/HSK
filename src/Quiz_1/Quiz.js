@@ -30,9 +30,7 @@ function Quiz_Screen() {
         <Separator />
         <Text style={styles.counter}>{quizCount + 1}/10</Text>
         <Separator />
-        <Separator2 />
         <Text style={styles.question}>{quizzes[quizCount].hsk}</Text>
-        <Separator2 />
         <Separator2 />
 
         {quizzes[quizCount].hsk_name.map((item, idx) => (
