@@ -7,18 +7,8 @@ import Result_Screen from "./Result";
 const styles = require("./stylesheet");
 
 function Quiz_1_Screen() {
-  const quizTotal = useHSKStore((state) => state.quizTotal);
   const quizCount = useHSKStore((state) => state.quizCount);
-  const addQuizCount = useHSKStore((state) => state.addQuizCount);
-
   const quizzes = useHSKStore((state) => state.quizzes);
-  const addQuiz = useHSKStore((state) => state.addQuiz);
-  
-  const updateChosen = useHSKStore((state) => state.updateChosen);
-  const updateQuiz = useHSKStore((state) => state.updateQuiz);
-
-
- 
 
 
   const ready_quiz_length = quizzes.length;

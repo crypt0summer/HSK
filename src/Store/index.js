@@ -18,30 +18,18 @@ const useQ1Store = create((set) => ({
   quizCount: 0,
   quizTotal: 2,
   quizzes: [
-    {
-      hsk: "0101",
-      hsk_name: [
-        "살아 있는 말 · 당나귀 · 노새 · 버새",
-        "살아 있는 소",
-        "살아 있는 돼지",
-        "4번",
-        "5번",
-      ],
-      answer: 0,
-      chosen: -1,
-    },
-    {
-      hsk: "0207",
-      hsk_name: [
-        "제0105호의 가금류의 육과 식용 설육(신선한 것, 냉장하거나 냉동한 것으로 한정한다)",
-        "살아 있는 소",
-        "살아 있는 돼지",
-        "4번",
-        "5번",
-      ],
-      answer: 0,
-      chosen: -1,
-    },
+    // {
+    //   hsk: "0101",
+    //   hsk_name: [
+    //     "살아 있는 말 · 당나귀 · 노새 · 버새",
+    //     "살아 있는 소",
+    //     "살아 있는 돼지",
+    //     "4번",
+    //     "5번",
+    //   ],
+    //   answer: 0,
+    //   chosen: -1,
+    // },
   ],
   addQuizCount: () =>
     set((state) => ({
@@ -61,7 +49,7 @@ const useQ1Store = create((set) => ({
     })),
   resetQuizCount: () =>
     set((state) => ({
-      quizCount: (state.quizCount = 0), //TODO 아직안써봄
+      quizCount: state.quizCount = 0, 
     })),
   removeQuiz: (hsk) =>
     set((state) => ({

@@ -50,7 +50,7 @@ function QuizNaviScreen({ navigation }) {
     let answer_idx = Math.floor(Math.random() * (5 - 0) + 0);
     idx_arr.splice(answer_idx, 0, include);
 
-    // console.log(idx_arr);
+    console.log('선택지 idx: ',idx_arr);
     //선택지 array를 한글 문장으로 바꿈
     const option_array = idx_arr.map(idx => json_kor[idx].hsk_name);
 
@@ -84,11 +84,9 @@ function QuizNaviScreen({ navigation }) {
     const quiz_arr = quiz_idx.map(idx => get_quiz_object(idx, total_option_count, 0, json_length));
     // console.log(quiz_arr);
     //뽑은문제 저장
-    addQuiz1(quiz_arr[0]);
-    addQuiz1(quiz_arr[1]);
-    // console.log(quizzes[3]);
-    
-
+    for (var quiz of quiz_arr) {
+      addQuiz1(quiz);
+    }
   };
 
   return (
