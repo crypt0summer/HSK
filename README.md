@@ -1,3 +1,3 @@
 # HSK
 Quiz application for my friend
-React Native + Expo + Redux
+React Native + Expo + Pandas
