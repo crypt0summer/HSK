@@ -13,8 +13,10 @@ function QuizNaviScreen({ navigation }) {
   const json_kor = customData.hsk_2022;
   const json_length = json_kor.length;
 
-  const resetQuiz1Count = useHSKStore((state) => state.resetQuizCount);
-  const removeAllQuiz1 = useHSKStore((state) => state.removeAllQuiz);
+  const resetQuizCount = useHSKStore((state) => state.resetQuizCount);
+  const removeAllQuiz = useHSKStore((state) => state.removeAllQuiz);
+  const removeAllWrongQuiz = useHSKStore((state) => state.removeAllWrongQuiz);
+
   const addQuiz1 = useHSKStore((state) => state.addQuiz);
   const quizTotal = useHSKStore((state) => state.quizTotal);
 
@@ -76,9 +78,11 @@ function QuizNaviScreen({ navigation }) {
 
   const ready_Quiz1 = (quiz_total) => {
     //기존 카운트 리셋
-    resetQuiz1Count();
+    resetQuizCount();
     //기존 문제세트 리셋
-    removeAllQuiz1();
+    removeAllQuiz();
+    //오답세트 리셋
+    removeAllWrongQuiz();
     //랜덤으로 n문제 뽑기
     const quiz_idx = get_randomArr(quiz_total, 0, json_length);
     const quiz_type =0;
