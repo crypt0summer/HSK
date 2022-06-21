@@ -22,10 +22,10 @@ function Result_Screen() {
 
       {wrongQuizzes.map((item, idx) => (
         <View>
-          <Text>{item.hsk}</Text>
-          <Text>정답: {item.hsk_name[item.answer]}</Text>
+          <Text>{item.hsk_name}</Text>
+          <Text>정답: {item.hsk[item.answer]}</Text>
           <Text>정답idx: {item.answer}</Text>
-          <Text>오답: {item.hsk_name[item.chosen]}</Text>
+          <Text>오답: {item.hsk[item.chosen]}</Text>
           <Text>오답idx: {item.chosen}</Text>
 
         </View>

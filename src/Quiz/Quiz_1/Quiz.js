@@ -1,9 +1,9 @@
 import * as React from "react";
 import { View, Text, SafeAreaView, ScrollView, Button } from "react-native";
-import customData from "../../assets/json/data_kor.json";
-import { useHSKStore } from "../Store/index";
+import customData from "../../../assets/json/data_kor.json";
+import { useHSKStore } from "../../Store/index";
 import { RadioButton } from "react-native-paper";
-const styles = require("./stylesheet");
+const styles = require("../stylesheet");
 
 function Quiz_Screen() {
   const quizCount = useHSKStore((state) => state.quizCount);

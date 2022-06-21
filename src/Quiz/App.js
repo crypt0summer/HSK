@@ -1,7 +1,7 @@
 import * as React from "react";
 import { View, SafeAreaView, ScrollView, Text } from "react-native";
 import { useHSKStore } from "../Store/index";
-import Quiz_Screen from "./Quiz";
+import Quiz_Screen from "./Quiz_1/Quiz";
 import Result_Screen from "./Result";
 
 const styles = require("./stylesheet");

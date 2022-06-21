@@ -1,7 +1,7 @@
 import * as React from "react";
 import { View, Text, SafeAreaView, Button } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Quiz_1_Screen from "../Quiz_1/App";
+import Quiz_1_Screen from "../Quiz/App";
 import Quiz_2_Screen from "../Quiz_2/App";
 import { useHSKStore } from "../Store/index";
 const styles = require("./stylesheet");
@@ -17,7 +17,7 @@ function QuizNaviScreen({ navigation }) {
   const removeAllQuiz = useHSKStore((state) => state.removeAllQuiz);
   const removeAllWrongQuiz = useHSKStore((state) => state.removeAllWrongQuiz);
 
-  const addQuiz1 = useHSKStore((state) => state.addQuiz);
+  const addQuiz = useHSKStore((state) => state.addQuiz);
   const quizTotal = useHSKStore((state) => state.quizTotal);
 
   const total_quiz_count = quizTotal;
@@ -35,7 +35,8 @@ function QuizNaviScreen({ navigation }) {
   Array.prototype.insert = function (index, item) {
     this.splice(index, 0, item);
   };
-  const get_randomArr_include = (count, min, max, include) => {
+
+  const get_randomArr_include = (quiz_type, count, min, max, include) => {
     let arr = new Set();
 
     while (arr.size < count) {
@@ -49,21 +50,26 @@ function QuizNaviScreen({ navigation }) {
     idx_arr.splice(answer_idx, 0, include);
 
     console.log("선택지 idx: ", idx_arr);
+    let option_array ;
     //선택지 array를 한글 문장으로 바꿈
-    const option_array = idx_arr.map((idx) => json_kor[idx].hsk_name);
+    if(quiz_type == 0 ){
+      option_array = idx_arr.map((idx) => json_kor[idx].hsk_name);
+    }else if(quiz_type ==1){
+      option_array = idx_arr.map((idx) => json_kor[idx].hsk);
+    }
 
     return [option_array, answer_idx];
   };
 
-  const get_quiz_object = (quiz_type , idx, count, min, max) => {
+  const get_quiz_object = (quiz_type, idx, count, min, max) => {
     const item = json_kor[idx];
-
-    let values = get_randomArr_include(count, min, max, idx);
-    const options = values[0];
-    const answer = values[1];
     let quiz;
-    
-    if(quiz_type == 0){
+
+    if(quiz_type == 0){ //세번퀴즈
+      let values = get_randomArr_include(quiz_type, count, min, max, idx);
+      const options = values[0];
+      const answer = values[1];
+  
       quiz = {
         type: quiz_type,
         hsk: [item.hsk],
@@ -71,8 +77,23 @@ function QuizNaviScreen({ navigation }) {
         answer: answer,
         chosen: -1,
       };
+
+    }else if(quiz_type == 1){ //호의용어퀴즈
+      let values = get_randomArr_include(quiz_type, count, min, max, idx);
+      const options = values[0];
+      const answer = values[1];
+  
+      quiz = {
+        type: quiz_type,
+        hsk: options,
+        hsk_name: [item.hsk_name],
+        answer: answer,
+        chosen: -1,
+      };
     }
-   
+
+    
+
     return quiz;
   };
 
@@ -85,7 +106,7 @@ function QuizNaviScreen({ navigation }) {
     removeAllWrongQuiz();
     //랜덤으로 n문제 뽑기
     const quiz_idx = get_randomArr(quiz_total, 0, json_length);
-    const quiz_type =0;
+    const quiz_type = 0;
 
     //뽑은 번호의 문제와 정답 만들기
     const quiz_arr = quiz_idx.map((idx) =>
@@ -94,7 +115,29 @@ function QuizNaviScreen({ navigation }) {
     // console.log(quiz_arr);
     //뽑은문제 저장
     for (var quiz of quiz_arr) {
-      addQuiz1(quiz);
+      addQuiz(quiz);
+    }
+  };
+
+  const ready_Quiz2 = (quiz_total) => {
+    //기존 카운트 리셋
+    resetQuizCount();
+    //기존 문제세트 리셋
+    removeAllQuiz();
+    //오답세트 리셋
+    removeAllWrongQuiz();
+    //랜덤으로 n문제 뽑기
+    const quiz_idx = get_randomArr(quiz_total, 0, json_length);
+    const quiz_type = 1;
+
+    //뽑은 번호의 문제와 정답 만들기
+    const quiz_arr = quiz_idx.map((idx) =>
+      get_quiz_object(quiz_type, idx, total_option_count, 0, json_length)
+    );
+    // console.log(quiz_arr);
+    //뽑은문제 저장
+    for (var quiz of quiz_arr) {
+      addQuiz(quiz);
     }
   };
 
@@ -122,7 +165,13 @@ function QuizNaviScreen({ navigation }) {
       </View>
       <Separator />
       <View>
-        <Button title="Quiz 2" onPress={() => navigation.navigate("Quiz_2")} />
+        <Button
+          title="Quiz 2"
+          onPress={() => {
+            ready_Quiz2(total_quiz_count);
+            navigation.navigate("Quiz_2");
+          }}
+        />
       </View>
     </SafeAreaView>
   );
@@ -140,12 +189,13 @@ const QuizNavigator = () => {
       <Stack.Screen
         name="Quiz_1"
         component={Quiz_1_Screen}
-        options={{ title: "세번으로 호의용어 찾기" }}
+        options={{ title: "세번 퀴즈" }}
+        // 세번으로 호의 용어 찾기
       />
       <Stack.Screen
         name="Quiz_2"
         component={Quiz_2_Screen}
-        options={{ title: "Quiz_2_Screen" }}
+        options={{ title: "호의 용어 퀴즈" }}
       />
     </Stack.Navigator>
   );
