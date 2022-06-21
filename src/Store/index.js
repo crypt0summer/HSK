@@ -5,7 +5,8 @@ const useQ1Store = create((set) => ({
   quizTotal: 2,
   quizzes: [
     // {
-    //   hsk: "0101",
+    //   type: 0, 1 //0이면 hsk 1개에 hsk_name 여러개, 1이면 그 반대   
+    //   hsk: [0101],
     //   hsk_name: [
     //     "살아 있는 말 · 당나귀 · 노새 · 버새",
     //     "살아 있는 소",
@@ -17,6 +18,24 @@ const useQ1Store = create((set) => ({
     //   chosen: -1,
     // },
   ],
+  wrongQuizzes: [],
+  addWrongQuiz: (wquiz) =>
+    set((state) => ({
+      wrongQuizzes: [
+        {
+          type: wquiz.type,
+          hsk: wquiz.hsk,
+          hsk_name: wquiz.hsk_name,
+          answer: wquiz.answer,
+          chosen: wquiz.chosen,
+        },
+        ...state.wrongQuizzes,
+      ],
+    })),
+  removeAllWrongQuiz: () =>
+    set((state) => ({
+      wrongQuizzes: (state.wrongQuizzes = []),
+    })),
   addQuizCount: () =>
     set((state) => ({
       quizCount: state.quizCount + 1,
@@ -25,6 +44,7 @@ const useQ1Store = create((set) => ({
     set((state) => ({
       quizzes: [
         {
+          type: quiz.type,
           hsk: quiz.hsk,
           hsk_name: quiz.hsk_name,
           answer: quiz.answer,
@@ -35,7 +55,7 @@ const useQ1Store = create((set) => ({
     })),
   resetQuizCount: () =>
     set((state) => ({
-      quizCount: state.quizCount = 0, 
+      quizCount: (state.quizCount = 0),
     })),
   removeQuiz: (hsk) =>
     set((state) => ({
@@ -45,7 +65,6 @@ const useQ1Store = create((set) => ({
     set((state) => ({
       quizzes: (state.quizzes = []),
     })),
-
   updateQuiz: (quiz) =>
     set((state) => ({
       quizzes: state.quizzes.map((item) => {

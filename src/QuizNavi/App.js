@@ -13,14 +13,13 @@ function QuizNaviScreen({ navigation }) {
   const json_kor = customData.hsk_2022;
   const json_length = json_kor.length;
 
-  const total_quiz_count = 10;
-  const total_option_count = 4;
-
   const resetQuiz1Count = useHSKStore((state) => state.resetQuizCount);
   const removeAllQuiz1 = useHSKStore((state) => state.removeAllQuiz);
   const addQuiz1 = useHSKStore((state) => state.addQuiz);
+  const quizTotal = useHSKStore((state) => state.quizTotal);
 
-  const quizzes = useHSKStore((state) => state.quizzes);
+  const total_quiz_count = quizTotal;
+  const total_option_count = 4;
 
   const get_randomArr = (count, min, max) => {
     let arr = new Set();
@@ -54,19 +53,24 @@ function QuizNaviScreen({ navigation }) {
     return [option_array, answer_idx];
   };
 
-  const get_quiz_object = (idx, count, min, max) => {
+  const get_quiz_object = (quiz_type , idx, count, min, max) => {
     const item = json_kor[idx];
 
     let values = get_randomArr_include(count, min, max, idx);
     const options = values[0];
     const answer = values[1];
-    const quiz = {
-      hsk: item.hsk,
-      hsk_name: options,
-      answer: answer,
-      chosen: -1,
-    };
-    // console.info("한 문제: ",quiz);
+    let quiz;
+    
+    if(quiz_type == 0){
+      quiz = {
+        type: quiz_type,
+        hsk: [item.hsk],
+        hsk_name: options,
+        answer: answer,
+        chosen: -1,
+      };
+    }
+   
     return quiz;
   };
 
@@ -77,9 +81,11 @@ function QuizNaviScreen({ navigation }) {
     removeAllQuiz1();
     //랜덤으로 n문제 뽑기
     const quiz_idx = get_randomArr(quiz_total, 0, json_length);
+    const quiz_type =0;
+
     //뽑은 번호의 문제와 정답 만들기
     const quiz_arr = quiz_idx.map((idx) =>
-      get_quiz_object(idx, total_option_count, 0, json_length)
+      get_quiz_object(quiz_type, idx, total_option_count, 0, json_length)
     );
     // console.log(quiz_arr);
     //뽑은문제 저장
