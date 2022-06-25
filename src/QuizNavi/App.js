@@ -1,8 +1,8 @@
 import * as React from "react";
 import { View, Text, SafeAreaView, Button } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Quiz_1_Screen from "../Quiz/App";
-import Quiz_2_Screen from "../Quiz_2/App";
+import Quiz_1_Screen from "../Quiz/Quiz_1/Quiz";
+import Quiz_2_Screen from "../Quiz/Quiz_2/Quiz";
 import { useHSKStore } from "../Store/index";
 const styles = require("./stylesheet");
 import customData from "../../assets/json/data_kor.json";

@@ -1,7 +1,6 @@
 import * as React from "react";
 import { View, Text, SafeAreaView, ScrollView, Button } from "react-native";
-import customData from "../../assets/json/data_kor.json";
-import { useHSKStore } from "../Store/index";
+import { useHSKStore } from "../../Store/index";
 import { RadioButton } from "react-native-paper";
 const styles = require("../stylesheet");
 

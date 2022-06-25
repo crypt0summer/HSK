@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "hsk마스터",
+    "name": "HSK Master",
     "slug": "hsk",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -18,13 +18,17 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.idealidea.hskmaster",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.idealidea.hskmaster",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
