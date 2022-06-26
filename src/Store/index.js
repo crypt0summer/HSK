@@ -1,6 +1,6 @@
 import create from "zustand";
 
-const useQ1Store = create((set) => ({
+const useQuizStore = create((set) => ({
   quizCount: 0,
   quizTotal: 2,
   quizzes: [
@@ -97,4 +97,4 @@ const useQ1Store = create((set) => ({
     })),
 }));
 
-export const useHSKStore = useQ1Store;
+export const useHSKStore = useQuizStore;

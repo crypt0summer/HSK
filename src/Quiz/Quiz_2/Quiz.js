@@ -9,9 +9,7 @@ function Quiz_Screen() {
   const addQuizCount = useHSKStore((state) => state.addQuizCount);
 
   const quizzes = useHSKStore((state) => state.quizzes);
-  const addQuiz = useHSKStore((state) => state.addQuiz);
-  const removeQuiz = useHSKStore((state) => state.removeQuiz);
-  const updateChosen = useHSKStore((state) => state.updateChosen);
+  const quizTotal = useHSKStore((state) => state.quizTotal);
   const updateQuiz = useHSKStore((state) => state.updateQuiz);
 
   //TODO: 파싱해서 랜덤으로 10문제 뽑기
@@ -27,7 +25,7 @@ function Quiz_Screen() {
     <View>
       <View>
         <Separator />
-        <Text style={styles.counter}>{quizCount + 1}/10</Text>
+        <Text style={styles.counter}>{quizCount + 1}/{quizTotal}</Text>
         <Separator />
         <Text style={styles.question}>{quizzes[quizCount].hsk_name}</Text>
         <Separator2 />
