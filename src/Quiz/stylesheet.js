@@ -26,6 +26,14 @@ module.exports = StyleSheet.create({
       borderColor: '#f0f0f0',
       backgroundColor: '#f9f9f9'
     },
+    wrong_question: {
+      textAlign: 'center', 
+      padding: 10,
+      margin: 10,
+      borderWidth: StyleSheet.hairlineWidth,
+      borderColor: '#f0f0f0',
+      backgroundColor: '#f9f9f9'
+    },
     radiobtn:{
       marginLeft: 20,
       marginRight: 20
