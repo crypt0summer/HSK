@@ -1,4 +1,4 @@
-import customData from '../../assets/json/data_kor.json';
+import customData from '../../assets/json/data_all_kor.json';
 
 function AllRandom() {
     const name = 'react';

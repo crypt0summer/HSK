@@ -5,7 +5,7 @@ import Quiz_1_Screen from "../Quiz/Quiz_1/App";
 import Quiz_2_Screen from "../Quiz/Quiz_2/App";
 import { useHSKStore } from "../Store/index";
 const styles = require("./stylesheet");
-import customData from "../../assets/json/data_kor.json";
+import customData from "../../assets/json/data_all_kor.json";
 
 const Separator = () => <View style={styles.separator} />;
 

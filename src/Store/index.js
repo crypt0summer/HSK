@@ -2,7 +2,7 @@ import create from "zustand";
 
 const useQuizStore = create((set) => ({
   quizCount: 0,
-  quizTotal: 2,
+  quizTotal: 10,
   quizzes: [
     // {
     //   type: 0, 1 //0이면 hsk 1개에 hsk_name 여러개, 1이면 그 반대   
