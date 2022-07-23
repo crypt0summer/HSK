@@ -5,11 +5,12 @@ module.exports = StyleSheet.create({
       flex: 1,
       backgroundColor: "#fff",
       alignItems: "center",
-      margin: 10,
+      // margin: 10,
       // justifyContent: "center",
     },
     scrollView: {
       marginHorizontal: 10,
+      marginBottom: 55,
     },
     counter: {
       textAlign: 'center', // <-- the magic
@@ -19,7 +20,7 @@ module.exports = StyleSheet.create({
     question: {
       textAlign: 'center', 
       // borderRadius: "50px",
-      fontSize: 30,
+      fontSize: 20,
       padding: 20,
       margin: 20,
       borderWidth: StyleSheet.hairlineWidth,

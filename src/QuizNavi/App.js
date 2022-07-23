@@ -6,6 +6,7 @@ import Quiz_2_Screen from "../Quiz/Quiz_2/App";
 import { useHSKStore } from "../Store/index";
 const styles = require("./stylesheet");
 import customData from "../../assets/json/data_all_kor.json";
+import OpenURLBanner from "../commonComp";
 
 const Separator = () => <View style={styles.separator} />;
 
@@ -173,6 +174,8 @@ function QuizNaviScreen({ navigation }) {
           }}
         />
       </View>
+      <OpenURLBanner url={"https://customsacademy.co.kr/"}/>
+
     </SafeAreaView>
   );
 }

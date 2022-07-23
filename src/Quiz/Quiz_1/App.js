@@ -3,7 +3,7 @@ import { View, SafeAreaView, ScrollView, Text } from "react-native";
 import { useHSKStore } from "../../Store/index";
 import Quiz_Screen from "./Quiz";
 import Result_Screen from "../Result";
-
+import OpenURLBanner from "../../commonComp";
 const styles = require("../stylesheet");
 
 function Quiz_1_Screen() {
@@ -15,7 +15,7 @@ function Quiz_1_Screen() {
   
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
+      <ScrollView style={styles.scrollView}>
       
         {ready_quiz_length === 0 ? (
           <Text>No Questions</Text>
@@ -25,6 +25,7 @@ function Quiz_1_Screen() {
           <Result_Screen />
         )}
       </ScrollView>
+      <OpenURLBanner url={"https://customsacademy.co.kr/"}/>
     </SafeAreaView>
   );
 }
